@@ -23,7 +23,6 @@ class CommentRepository(ABC):
     @abstractmethod
     async def update(self, comment: Comment) -> Optional[Comment]:
         pass
-
     @abstractmethod
     async def delete(self, commetn_id: int) -> bool:
         pass

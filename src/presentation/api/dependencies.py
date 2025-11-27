@@ -32,3 +32,5 @@ def get_update_user_use_case():
 def get_delete_user_use_case():
     return DeleteUserUseCase(get_user_repository())
 
+def get_create_comment_use_case():
+    pass

@@ -281,6 +281,7 @@ uv pip install -e ".[dev]"        # + dev зависимости
 uv pip install <package>          # добавить пакет
 uv pip list                       # список пакетов
 uv pip freeze > requirements.txt  # заморозить
+.venv\Scripts\activate         # активировать оружение
 ```
 
 ---

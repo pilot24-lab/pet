@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from src.infrastructure.database.connection import db_connection
 from src.presentation.api.routes.users import router as users_router
+from src.presentation.api.routes.comments import router as comments_router
 
 
 @asynccontextmanager
@@ -30,6 +31,7 @@ def create_app() -> FastAPI:
     )
 
     app.include_router(users_router)
+    app.include_router(comments_router)
 
     @app.get("/health")
     async def health_check():

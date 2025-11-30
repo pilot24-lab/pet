@@ -8,7 +8,7 @@ class PostgresCommentRepository(CommentRepository):
     def __init__(self, db: DatabaseConnection):
         self.db = db
 
-    def _map_row_to_comment(self, row) -> Comment:
+    def _map_row_to_comment(self, row) -> Optional[Comment]:
         if not row:
             return None
         return Comment(
@@ -30,3 +30,20 @@ class PostgresCommentRepository(CommentRepository):
         )
         return self._map_row_to_comment(row)
     
+    async def get_by_id(self, comment_id: int) -> Optional[Comment]:
+        pass
+
+    
+    async def get_by_user_id(self, user_id: int, limit: int = 100, offset: int = 0) -> List[Comment]:
+        pass
+
+    
+    async def get_all(self, limit: int = 100, offset: int = 0) -> List[Comment]:
+        pass
+
+  
+    async def update(self, comment: Comment) -> Optional[Comment]:
+        pass
+   
+    async def delete(self, comment_id: int) -> bool:
+        pass

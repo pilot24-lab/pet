@@ -13,7 +13,7 @@ class CommentRepository(ABC):
         pass
 
     @abstractmethod
-    async def get_by_user_id(self, user_id: int, imit: int = 100, offset: int = 0) -> List[Comment]:
+    async def get_by_user_id(self, user_id: int, limit: int = 100, offset: int = 0) -> List[Comment]:
         pass
 
     @abstractmethod
@@ -24,5 +24,5 @@ class CommentRepository(ABC):
     async def update(self, comment: Comment) -> Optional[Comment]:
         pass
     @abstractmethod
-    async def delete(self, commetn_id: int) -> bool:
+    async def delete(self, comment_id: int) -> bool:
         pass

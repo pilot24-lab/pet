@@ -13,7 +13,7 @@ from src.presentation.schemas.comment_schemas import (
     CommentResponse
 )
 
-router = APIRouter(prefix='/comments', tahs = ['comments'])
+router = APIRouter(prefix='/comments', tags=['comments'])
 
 @router.post("/", response_model=CommentResponse, status_code=status.HTTP_201_CREATED)
 async def create_comment(

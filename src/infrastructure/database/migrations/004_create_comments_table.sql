@@ -11,4 +11,4 @@ create table if not exists comments (
         on delete cascade
 );
 
-create index of not exists idx_users_id on comments(user_id)
+create index if not exists idx_users_id on comments(user_id)

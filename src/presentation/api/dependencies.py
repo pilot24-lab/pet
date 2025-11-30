@@ -41,4 +41,4 @@ def get_comment_repository():
     return PostgresCommentRepository(db_connection)
 
 def get_create_comment_use_case():
-    return CreateCommentUseCase(get_comment_repository)
+    return CreateCommentUseCase(get_comment_repository(), get_user_repository())

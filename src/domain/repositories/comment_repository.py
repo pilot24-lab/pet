@@ -8,7 +8,7 @@ class CommentRepository(ABC):
     async def create(self, comment: Comment) -> Comment:
         pass
 
-    @abstractmethod
+"""     @abstractmethod
     async def get_by_id(self, comment_id: int) -> Optional[Comment]:
         pass
 
@@ -26,3 +26,4 @@ class CommentRepository(ABC):
     @abstractmethod
     async def delete(self, comment_id: int) -> bool:
         pass
+ """

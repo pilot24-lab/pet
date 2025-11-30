@@ -21,7 +21,7 @@ class CreateCommentUseCase:
         return await self.comment_repository.create(comment)
        
 
-class GetCommentUseCase:
+""" class GetCommentUseCase:
     def __init__(self, commetn_repository: CommentRepository):
         self.comment_repository = commetn_repository
 
@@ -73,6 +73,6 @@ class DeleteCommentUseCase:
         result = await self.comment_repository.delete(comment_id)
         if not result:
             raise EntityNotFound(f"Comment with {comment_id} is not found")
-        return result
+        return result """
 
         

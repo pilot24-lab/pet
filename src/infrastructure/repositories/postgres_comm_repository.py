@@ -30,7 +30,7 @@ class PostgresCommentRepository(CommentRepository):
         )
         return self._map_row_to_comment(row)
     
-    async def get_by_id(self, comment_id: int) -> Optional[Comment]:
+"""     async def get_by_id(self, comment_id: int) -> Optional[Comment]:
         pass
 
     
@@ -46,4 +46,4 @@ class PostgresCommentRepository(CommentRepository):
         pass
    
     async def delete(self, comment_id: int) -> bool:
-        pass
+        pass """

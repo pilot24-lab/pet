@@ -26,7 +26,7 @@ async def create_comment(
             id = comment_ex.id,
             user_id = comment_ex.user_id,
             comment = comment_ex.comment,
-            created_at = comment_ex.created_ad,
+            created_at = comment_ex.created_at,
             updated_at = comment_ex.updated_at        
         )
     except EntityAlreadyExists as e:

@@ -30,6 +30,19 @@ class PostgresCommentRepository(CommentRepository):
         )
         return self._map_row_to_comment(row)
     
+    async def get_all(self, limit: int = 100, offset: int = 0) -> List[Comment]:
+        rows = await self.db.fetch(
+            """
+            select id, user_id, comment, created_at, updated_at
+            from comments
+            order by id
+            limit $1, offset $2
+            """,
+            limit, offset
+        )
+        return [self._map_row_to_comment(row) for row in rows]
+    
+    
 """     async def get_by_id(self, comment_id: int) -> Optional[Comment]:
         pass
 
@@ -38,8 +51,7 @@ class PostgresCommentRepository(CommentRepository):
         pass
 
     
-    async def get_all(self, limit: int = 100, offset: int = 0) -> List[Comment]:
-        pass
+    
 
   
     async def update(self, comment: Comment) -> Optional[Comment]:

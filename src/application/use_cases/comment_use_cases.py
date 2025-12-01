@@ -21,6 +21,14 @@ class CreateCommentUseCase:
         return await self.comment_repository.create(comment)
        
 
+class GetAllCommentsUseCase:
+    def __init__(self, comment_repository: CommentRepository):
+        self.comment_repository = comment_repository
+
+    async def execute(self, limit: int = 100, offset: int = 0) -> List[Comment]:
+        return await self.comment_repository.get_all(limit=limit, offset=offset)
+    
+    
 """ class GetCommentUseCase:
     def __init__(self, commetn_repository: CommentRepository):
         self.comment_repository = commetn_repository
@@ -44,12 +52,7 @@ class GetAllCommentsUserIdUseCase:
         return await self.comment_repository.get_by_user_id(user_id=user_id, limit=limit, offset=offset)
         
 
-class GetAllCommentsUseCase:
-    def __init__(self, comment_repository: CommentRepository):
-        self.comment_repository = comment_repository
 
-    async def execute(self, limit: int = 100, offset: int = 0) -> List[Comment]:
-        return await self.comment_repository.get_all(limit=limit, offset=offset)
 
 class UpdateCommentUseCase:
     def __init__(self, comment_repository: CommentRepository):

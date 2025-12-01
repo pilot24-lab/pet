@@ -5,7 +5,10 @@ from src.application.use_cases.user_use_cases import (
     UpdateUserUseCase,
     DeleteUserUseCase,
 )
-from src.application.use_cases.comment_use_cases import CreateCommentUseCase
+from src.application.use_cases.comment_use_cases import (
+    CreateCommentUseCase,
+    GetAllCommentsUseCase,
+)
 
 from src.infrastructure.database.connection import db_connection
 from src.infrastructure.repositories.postgres_user_repository import PostgresUserRepository
@@ -42,3 +45,6 @@ def get_comment_repository():
 
 def get_create_comment_use_case():
     return CreateCommentUseCase(get_comment_repository(), get_user_repository())
+
+def get_get_all_comments_use_case():
+    return GetAllCommentsUseCase(get_comment_repository())

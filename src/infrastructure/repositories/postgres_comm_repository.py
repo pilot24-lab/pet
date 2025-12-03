@@ -36,7 +36,7 @@ class PostgresCommentRepository(CommentRepository):
             select id, user_id, comment, created_at, updated_at
             from comments
             order by id
-            limit $1, offset $2
+            limit $1 offset $2
             """,
             limit, offset
         )

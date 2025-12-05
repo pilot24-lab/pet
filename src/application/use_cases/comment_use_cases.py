@@ -29,7 +29,7 @@ class GetAllCommentsUseCase:
         return await self.comment_repository.get_all(limit=limit, offset=offset)
     
     
-""" class GetCommentUseCase:
+class GetCommentUseCase:
     def __init__(self, commetn_repository: CommentRepository):
         self.comment_repository = commetn_repository
 
@@ -40,7 +40,7 @@ class GetAllCommentsUseCase:
         return comment        
 
 
-class GetAllCommentsUserIdUseCase:
+""" class GetAllCommentsUserIdUseCase:
     def __init__(self, comment_repository: CommentRepository, user_repository: UserRepository):
         self.comment_repository = comment_repository
         self.user_repository = user_repository

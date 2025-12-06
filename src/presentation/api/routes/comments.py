@@ -78,7 +78,7 @@ async def get_comment(
     except EntityNotFound as e:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
 
-@router.get("/{comment_id}", response_model=List[CommentResponse])
+@router.get("/user/{user_id}", response_model=List[CommentResponse])
 async def get_comment_by_user_id(
     user_id: int, 
     use_case: GetAllCommentsUserIdUseCase  = Depends(get_get_all_comments_by_user_id_use_case)

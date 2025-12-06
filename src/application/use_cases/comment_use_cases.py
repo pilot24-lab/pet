@@ -40,7 +40,7 @@ class GetCommentUseCase:
         return comment        
 
 
-""" class GetAllCommentsUserIdUseCase:
+class GetAllCommentsUserIdUseCase:
     def __init__(self, comment_repository: CommentRepository, user_repository: UserRepository):
         self.comment_repository = comment_repository
         self.user_repository = user_repository
@@ -53,7 +53,7 @@ class GetCommentUseCase:
         
 
 
-
+"""
 class UpdateCommentUseCase:
     def __init__(self, comment_repository: CommentRepository):
         self.comment_repository = comment_repository

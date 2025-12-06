@@ -9,6 +9,7 @@ from src.application.use_cases.comment_use_cases import (
     CreateCommentUseCase,
     GetAllCommentsUseCase,
     GetCommentUseCase,
+    GetAllCommentsUserIdUseCase
 )
 
 from src.infrastructure.database.connection import db_connection
@@ -52,3 +53,6 @@ def get_get_all_comments_use_case():
 
 def get_get_comment_use_case():
     return GetCommentUseCase(get_comment_repository())
+
+def get_get_all_comments_by_user_id_use_case():
+    return GetAllCommentsUserIdUseCase(get_comment_repository(), get_user_repository())

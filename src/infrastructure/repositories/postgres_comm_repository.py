@@ -54,15 +54,21 @@ class PostgresCommentRepository(CommentRepository):
         )
         return self._map_row_to_comment(row)
     
-
     
-    """  async def get_by_user_id(self, user_id: int, limit: int = 100, offset: int = 0) -> List[Comment]:
-        pass
-
+    async def get_by_user_id(self, user_id: int, limit: int = 100, offset: int = 0) -> List[Comment]:
+        rows = await self.db.fetch(
+            """
+            select id, user_id, comment, created_at, updated_at
+            from comments
+            where user_id = $1
+            order by id
+            limit $2 offset $3
+        """, user_id, limit, offset
+        )
+        return [self._map_row_to_comment(row) for row in rows]
     
     
-
-  
+    """  
     async def update(self, comment: Comment) -> Optional[Comment]:
         pass
    

@@ -67,10 +67,19 @@ class PostgresCommentRepository(CommentRepository):
         )
         return [self._map_row_to_comment(row) for row in rows]
     
-    
-    """  
+        
     async def update(self, comment: Comment) -> Optional[Comment]:
-        pass
-   
+        row = await self.db.fetchrow(
+            """
+            update comments
+            set comment = $1, updated_at = current_timestamp
+            where id = $2
+            returning  id, user_id, comment, created_at, updated_at
+            """, comment.comment, comment.user_id
+        )
+        return self._map_row_to_comment(row)
+
+
+    """ 
     async def delete(self, comment_id: int) -> bool:
         pass """

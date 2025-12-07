@@ -14,3 +14,7 @@ class CommentResponse(BaseModel):
     comment: str
     created_at: datetime
     updated_at: datetime
+
+class CommentUpdateResponse(BaseModel):
+    comment: Optional[str] = None
+    user_id: int

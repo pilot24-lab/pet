@@ -53,21 +53,27 @@ class GetAllCommentsUserIdUseCase:
         
 
 
-"""
+
 class UpdateCommentUseCase:
-    def __init__(self, comment_repository: CommentRepository):
+    def __init__(self, comment_repository: CommentRepository, user_repository: UserRepository):
         self.comment_repository = comment_repository
+        self.user_repository = user_repository
         
     async def execute(self, comment: str, user_id: int, comment_id: int) -> Comment:
-        existing_comment = await self.comment_repository.get_by_id(comment_id)
         
-        if not existing_comment:
+        existing_user = await self.user_repository.get_by_id(user_id)
+        
+        if not existing_user:
+            raise EntityNotFound(f"User with id {user_id} not found")
+        
+        updated_comment = await self.comment_repository.get_by_id(comment_id)
+        if not updated_comment:
             raise EntityNotFound(f"Comment with {comment_id} user_id is not found")
         if comment:
-            existing_comment.comment = comment
-        return await self.comment_repository.update(existing_comment)
+            updated_comment.comment = comment
+        return updated_comment
              
-
+"""
 class DeleteCommentUseCase:
     def __init__(self, comment_repositoty: CommentRepository):
         self.comment_repository = comment_repositoty

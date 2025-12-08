@@ -15,6 +15,6 @@ class CommentResponse(BaseModel):
     created_at: datetime
     updated_at: datetime
 
-class CommentUpdateResponse(BaseModel):
+class CommentUpdateRequest(BaseModel):
     comment: Optional[str] = None
     user_id: int

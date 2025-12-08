@@ -19,7 +19,7 @@ from src.presentation.api.dependencies import (
 from src.presentation.schemas.comment_schemas import (
     CommentCreateRequest,
     CommentResponse,
-    CommentUpdateResponse,
+    CommentUpdateRequest,
 )
 
 router = APIRouter(prefix='/comments', tags=['comments'])
@@ -101,10 +101,10 @@ async def get_comments_by_user_id(
     except EntityNotFound as e:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
     
-@router.put("/{commetnt_id}", response_model=CommentResponse)
+@router.put("/{comment_id}", response_model=CommentResponse)
 async def update_comment(
     comment_id: int,
-    request: CommentUpdateResponse,
+    request: CommentUpdateRequest,
     use_case: UpdateCommentUseCase = Depends(get_update_comment_use_case)
 ):
     try:

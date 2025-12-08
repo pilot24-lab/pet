@@ -59,18 +59,22 @@ class UpdateCommentUseCase:
         self.comment_repository = comment_repository
         self.user_repository = user_repository
         
-    async def execute(self, comment: str, user_id: int, comment_id: int) -> Comment:
-        
+    async def execute(self, comment: str, user_id: int, comment_id: int) -> Comment:        
         existing_user = await self.user_repository.get_by_id(user_id)
-        
         if not existing_user:
             raise EntityNotFound(f"User with id {user_id} not found")
+                
+        existing_comment = await self.comment_repository.get_by_id(comment_id)
+        if user_id != existing_comment.user_id:
+            raise EntityNotFound(f"User with id {user_id} is not the owner of comment {comment_id}")
         
-        updated_comment = await self.comment_repository.get_by_id(comment_id)
+        if comment:
+            existing_comment.comment = comment
+                
+        updated_comment = await self.comment_repository.update(existing_comment)
         if not updated_comment:
             raise EntityNotFound(f"Comment with {comment_id} user_id is not found")
-        if comment:
-            updated_comment.comment = comment
+        
         return updated_comment
              
 """

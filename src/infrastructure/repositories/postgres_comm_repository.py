@@ -75,11 +75,18 @@ class PostgresCommentRepository(CommentRepository):
             set comment = $1, updated_at = current_timestamp
             where id = $2
             returning  id, user_id, comment, created_at, updated_at
-            """, comment.comment, comment.user_id
+            """, comment.comment, comment.id
         )
         return self._map_row_to_comment(row)
 
 
-    """ 
+    
     async def delete(self, comment_id: int) -> bool:
-        pass """
+        result = await self.db.execute(
+            """
+            delete from comments
+            where id = $1
+            """,
+            comment_id
+        )
+        return result == "DELETE 1"

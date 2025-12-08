@@ -11,6 +11,7 @@ from src.application.use_cases.comment_use_cases import (
     GetCommentUseCase,
     GetAllCommentsUserIdUseCase,
     UpdateCommentUseCase,
+    DeleteCommentUseCase
 )
 
 from src.infrastructure.database.connection import db_connection
@@ -60,3 +61,6 @@ def get_get_all_comments_by_user_id_use_case():
 
 def get_update_comment_use_case():
     return UpdateCommentUseCase(get_comment_repository(), get_user_repository())
+
+def get_delete_comment_use_case():
+    return DeleteCommentUseCase(get_comment_repository())

@@ -38,5 +38,5 @@ ENV/
 
 uv.lock
 
-
+logs/
 

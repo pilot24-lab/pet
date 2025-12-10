@@ -1,5 +1,6 @@
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
+import logging
 
 from src.application.use_cases.comment_use_cases import (
     CreateCommentUseCase,
@@ -26,6 +27,8 @@ from src.presentation.schemas.comment_schemas import (
 
 router = APIRouter(prefix='/comments', tags=['comments'])
 
+logger = logging.getLogger(__name__)
+
 @router.post("/", response_model=CommentResponse, status_code=status.HTTP_201_CREATED)
 async def create_comment(
     request: CommentCreateRequest,
@@ -33,6 +36,7 @@ async def create_comment(
 ):
     try:
         comment = await use_case.execute(user_id=request.user_id, comment=request.comment)
+        logger.info(f"API call: create comment")
         return CommentResponse(
             id = comment.id,
             user_id = comment.user_id,
@@ -41,10 +45,13 @@ async def create_comment(
             updated_at = comment.updated_at        
         )
     except EntityAlreadyExists as e:
+        logger.error("Error message")
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=str(e))
     except ValidationError as e:
+        logger.error("Error message")
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
     except EntityNotFound as e:
+        logger.error("Error message")
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
     
 
@@ -111,6 +118,7 @@ async def update_comment(
 ):
     try:
         comment = await use_case.execute(comment_id=comment_id, user_id=request.user_id, comment=request.comment)
+        logger.info("Info message")
         return CommentResponse(
             id=comment.id,
             user_id=comment.user_id,
@@ -119,6 +127,7 @@ async def update_comment(
             updated_at=comment.updated_at,    
         )
     except EntityNotFound as e:
+        logger.error("Error message")
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
     
 @router.delete("/{comment_id}", status_code=status.HTTP_204_NO_CONTENT)
@@ -128,5 +137,7 @@ async def delete_comment(
 ):
     try:
         await use_case.execute(comment_id=comment_id)
+        logger.info("Info message")
     except EntityNotFound as e:
+        logger.error("Error message")
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))

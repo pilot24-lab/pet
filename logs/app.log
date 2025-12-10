@@ -1,0 +1,6 @@
+2025-12-10 16:30:53 - my_app - INFO - Info message - [app.py:42]
+2025-12-10 16:31:06 - src.presentation.api.routes.comments - ERROR - Error message - [comments.py:142]
+2025-12-10 16:31:23 - src.presentation.api.routes.comments - ERROR - Error message - [comments.py:130]
+2025-12-10 16:32:00 - src.presentation.api.routes.comments - INFO - API call: create comment - [comments.py:39]
+2025-12-10 16:32:15 - src.presentation.api.routes.comments - ERROR - Error message - [comments.py:54]
+2025-12-10 16:38:01 - src.presentation.api.routes.comments - ERROR - Error message - [comments.py:54]
